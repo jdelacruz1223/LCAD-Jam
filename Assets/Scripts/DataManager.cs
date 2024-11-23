@@ -5,19 +5,44 @@ using UnityEngine;
 
 public class DataManager : MonoBehaviour
 {
-    // Data Manager Singleton Instance
     public static DataManager Instance;
     private DataManager() {}
+    void Start()
+    {
+        InitializeGame();
+    }
+    void InitializeGame()
+    {
+        totalTime = 0;
+        startTime = Time.time;
+        isTimerRunning = true;
+        isDriving = false;
+        distanceTravelled = 0;
+    }
+    void Update()
+    {
+        totalTime = GetTotalTimeElapsed();
+    }
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-    // Timer
-    public float totalTime { get; private set; }
-    public float startTime { get; private set; }
-    private bool isTimerRunning;
-    private bool isDriving;
-
-    // Progress
-    public int distanceTravelled;
     
+
+
+    #region driving
+    private bool isDriving;
+    public int distanceTravelled;
+
     public bool GetIsDriving()
     {
         return isDriving;
@@ -32,39 +57,19 @@ public class DataManager : MonoBehaviour
     {
         return distanceTravelled;
     }
-
-    void Awake()
+    public void IncreaseDistance()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        distanceTravelled++;
     }
+    #endregion
 
-    void Start()
-    {
-        InitializeGame();
-    }
 
-    void Update()
-    {
-        totalTime = GetTotalTimeElapsed();
-    }
 
-    void InitializeGame()
-    {
-        totalTime = 0;
-        startTime = Time.time;
-        isTimerRunning = true;
-        isDriving = false;
-        distanceTravelled = 0;
-    }
 
+    #region Timer
+    public float totalTime { get; private set; }
+    public float startTime { get; private set; }
+    private bool isTimerRunning;
     public float GetTotalTimeElapsed()
     {
         return Time.time - startTime;
@@ -84,10 +89,5 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    public void IncreaseDistance()
-    {
-        distanceTravelled++;
-    }
-
-
+    #endregion
 }

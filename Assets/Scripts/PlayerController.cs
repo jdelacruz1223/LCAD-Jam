@@ -8,10 +8,12 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region imports
     private Sanity sanity;
     private Baby baby;
     private DataManager dataManager;
     private Camera mainCam;
+    #endregion
     void Awake()
     {
         baby = GetComponent<Baby>();
@@ -22,12 +24,16 @@ public class PlayerController : MonoBehaviour
             Debug.LogError("Sanity component not found.");
         }
     }
-
     void Update()
     {
         MousePointer();
     }
 
+    
+
+
+
+    #region control
     void MousePointer()
     {
         mainCam = Camera.main;
@@ -80,6 +86,8 @@ public class PlayerController : MonoBehaviour
         }
         dataManager.ToggleIsDriving();
     }
+
+    #endregion
 
     
 }
