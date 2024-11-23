@@ -5,14 +5,12 @@ using UnityEngine;
 
 public class DebugTimers : MonoBehaviour
 {
-    DataManager dataManager;
     public TMP_Text timeText;
     public TMP_Text distanceText;
     private float currentTime;
     
     void Start()
     {
-        dataManager  = GetComponent<DataManager>();
         InvokeRepeating("Timer", 0.1f, Time.deltaTime);
     }
 
@@ -21,7 +19,7 @@ public class DebugTimers : MonoBehaviour
     {
         // insert if scene is no longer game
         // if(current scene is not game) CancelInvoke("Timer");
-        distanceText.text = dataManager.GetDistanceTravelled().ToString();
+        distanceText.text = DataManager.Instance.GetDistanceTravelled().ToString();
     }
 
     public void Timer()

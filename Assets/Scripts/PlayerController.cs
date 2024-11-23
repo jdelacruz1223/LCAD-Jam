@@ -8,26 +8,46 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
+    #region imports
     private Sanity sanity;
-    private Baby baby;
-    private DataManager dataManager;
     private Camera mainCam;
+    #endregion
+
+    
+
     void Awake()
     {
-        baby = GetComponent<Baby>();
         sanity = GetComponent<Sanity>();
-        dataManager = DataManager.Instance;
+        audioSource = GetComponent<AudioSource>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
         }
     }
-
     void Update()
     {
         MousePointer();
     }
 
+    #region audio
+    public AudioClip shifterSound;
+    public AudioClip shutUpBabySound;
+    private AudioSource audioSource;
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+    #endregion
+
+
+    
+
+
+
+    #region control
     void MousePointer()
     {
         mainCam = Camera.main;
@@ -43,9 +63,11 @@ public class PlayerController : MonoBehaviour
                 switch(hit.collider.name)
                 {
                     case "shifter":
+                        PlaySound(shifterSound);
                         ToggleDriving();
                         break;
                     case "baby":
+                        PlaySound(shutUpBabySound);
                         sanity.SetToggleState("babyValue", false);
                         Debug.Log("baby cool");
                         break;
@@ -55,31 +77,32 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        else
-        {
-            // Debug.Log("None");
-        }
+        // else
+        // {
+        //     // Debug.Log("None");
+        // }
     }
 
     void ToggleDriving()
     {
-        if (dataManager != null)
+
+        if (DataManager.Instance.GetIsDriving())
         {
-            if (dataManager.GetIsDriving())
-            {
-                Debug.Log("Not Driving");
-                dataManager.CancelInvoke("IncreaseDistance");
-                sanity.SetToggleState("driveValue", false);
-            }
-            else
-            {
-                Debug.Log("Driving");
-                dataManager.InvokeRepeating("IncreaseDistance", 1f, 1f);
-                sanity.SetToggleState("driveValue", true);
-            }
+            Debug.Log("Not Driving");
+            DataManager.Instance.CancelInvoke("IncreaseDistance");
+            sanity.SetToggleState("driveValue", false);
         }
-        dataManager.ToggleIsDriving();
+        else
+        {
+            Debug.Log("Driving");
+            DataManager.Instance.InvokeRepeating("IncreaseDistance", 1f, 1f);
+            sanity.SetToggleState("driveValue", true);
+        }
+        
+        DataManager.Instance.ToggleIsDriving();
     }
+
+    #endregion
 
     
 }

@@ -19,11 +19,14 @@ public class Sanity : MonoBehaviour
         InvokeRepeating("DamageSanity", 1f, 1f);
     }
 
-    void Update()
-    {
-        
-    }
 
+
+
+
+
+
+
+    #region modifiers
     private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
     {
         {"driveValue", (true, -1)},
@@ -68,9 +71,15 @@ public class Sanity : MonoBehaviour
             return false;
         }
     }
+    #endregion
     
+
+
+
+
+
     
-    
+    #region basic functions
     public void DamageSanity()
     {
         if(currentSanity > 0)
@@ -87,9 +96,9 @@ public class Sanity : MonoBehaviour
         }
         
     }
-
     void Die()
     {
         Debug.Log("Insert game over.");
     }
+    #endregion
 }
