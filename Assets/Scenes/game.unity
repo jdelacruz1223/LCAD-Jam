@@ -1023,7 +1023,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 65
+  field of view: 59
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1049,13 +1049,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100806362}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.008126868, y: 0.9649389, z: -0.08437503, w: -0.24841055}
-  m_LocalPosition: {x: 2.083, y: 1.501, z: 2.212}
+  m_LocalRotation: {x: -0.0007952786, y: 0.9825252, z: -0.085126095, w: -0.16552095}
+  m_LocalPosition: {x: 2.08, y: 1.5, z: 2.23}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 9.606, y: 209.001, z: 1.525}
+  m_LocalEulerAnglesHint: {x: 9.645, y: 199.256, z: 1.547}
 --- !u!1 &1198241870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1124,7 +1124,7 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
-  m_TargetDisplay: 0
+  m_TargetDisplay: 1
   m_TargetEye: 3
   m_HDR: 1
   m_AllowMSAA: 1
@@ -1701,6 +1701,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 988564055842856101, guid: dcc2c11a121eeaf4e8809ec590bda3d5, type: 3}
+      propertyPath: shifterSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 9fc655377f75f8149bc99f80b54faec9, type: 3}
+    - target: {fileID: 988564055842856101, guid: dcc2c11a121eeaf4e8809ec590bda3d5, type: 3}
       propertyPath: shutUpBabySound
       value: 
       objectReference: {fileID: 8300000, guid: f9af6350b1aed634f9dfc16bf74b1c76, type: 3}
@@ -1877,13 +1881,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 1100806364}
   secondaryCamera: {fileID: 1198241872}
-  currentCam: {fileID: 0}
+  currentCam: {fileID: 1100806364}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 1100806365}
   - {fileID: 1198241873}
+  - {fileID: 1100806365}
   - {fileID: 1743828787}
   - {fileID: 971185374}
   - {fileID: 885426067}
