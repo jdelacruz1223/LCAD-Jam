@@ -11,7 +11,7 @@ using UnityEngine;
 public class Sanity : MonoBehaviour
 {
     [SerializeField] public float MAX_SANITY = 100;
-    [SerializeField] public float currentSanity;
+    [SerializeField] public float currentSanity;  // UI: currently tracks total sanity
 
     void Start()
     {
