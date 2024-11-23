@@ -61,17 +61,20 @@ public class PlayerController : MonoBehaviour
 
     void ToggleDriving()
     {
-        if(dataManager.GetIsDriving())
+        if (dataManager != null)
         {
-            Debug.Log("Not Driving");
-            dataManager.CancelInvoke("IncreaseDistance");
-            sanity.SetToggleState("driveValue", false);
-        }
-        else if(dataManager.GetIsDriving() == false)
-        {
-            Debug.Log("Driving");
-            dataManager.InvokeRepeating("IncreaseDistance", 1f, 1f);
-            sanity.SetToggleState("driveValue", true);
+            if (dataManager.GetIsDriving())
+            {
+                Debug.Log("Not Driving");
+                dataManager.CancelInvoke("IncreaseDistance");
+                sanity.SetToggleState("driveValue", false);
+            }
+            else
+            {
+                Debug.Log("Driving");
+                dataManager.InvokeRepeating("IncreaseDistance", 1f, 1f);
+                sanity.SetToggleState("driveValue", true);
+            }
         }
         dataManager.ToggleIsDriving();
     }

@@ -25,7 +25,7 @@ public class Sanity : MonoBehaviour
     private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
     {
         {"driveValue", (true, -1)},
-        {"babyValue", (false, 1)}
+        {"babyValue", (false, 2)}
         //insert more cases here
     };
 
@@ -73,6 +73,10 @@ public class Sanity : MonoBehaviour
     {
         if(currentSanity > 0)
         {
+            if(this.currentSanity >= MAX_SANITY)
+            {
+                currentSanity = MAX_SANITY;
+            }
             this.currentSanity -= GetTotalModifier();
         }
         if(currentSanity <= 0)

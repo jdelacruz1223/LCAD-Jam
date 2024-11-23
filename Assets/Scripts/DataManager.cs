@@ -7,7 +7,7 @@ public class DataManager : MonoBehaviour
 {
     // Data Manager Singleton Instance
     public static DataManager Instance;
-    // private DataManager() {}
+    private DataManager() {}
 
     // Timer
     public float totalTime { get; private set; }
