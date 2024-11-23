@@ -11,14 +11,12 @@ public class PlayerController : MonoBehaviour
     #region imports
     private Sanity sanity;
     private Baby baby;
-    private DataManager dataManager;
     private Camera mainCam;
     #endregion
     void Awake()
     {
         baby = GetComponent<Baby>();
         sanity = GetComponent<Sanity>();
-        dataManager = DataManager.Instance;
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -69,22 +67,21 @@ public class PlayerController : MonoBehaviour
 
     void ToggleDriving()
     {
-        if (dataManager != null)
+
+        if (DataManager.Instance.GetIsDriving())
         {
-            if (dataManager.GetIsDriving())
-            {
-                Debug.Log("Not Driving");
-                dataManager.CancelInvoke("IncreaseDistance");
-                sanity.SetToggleState("driveValue", false);
-            }
-            else
-            {
-                Debug.Log("Driving");
-                dataManager.InvokeRepeating("IncreaseDistance", 1f, 1f);
-                sanity.SetToggleState("driveValue", true);
-            }
+            Debug.Log("Not Driving");
+            DataManager.Instance.CancelInvoke("IncreaseDistance");
+            sanity.SetToggleState("driveValue", false);
         }
-        dataManager.ToggleIsDriving();
+        else
+        {
+            Debug.Log("Driving");
+            DataManager.Instance.InvokeRepeating("IncreaseDistance", 1f, 1f);
+            sanity.SetToggleState("driveValue", true);
+        }
+        
+        DataManager.Instance.ToggleIsDriving();
     }
 
     #endregion

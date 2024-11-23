@@ -6,7 +6,7 @@ using UnityEngine;
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
-    private DataManager() {}
+    // private DataManager() {}
     void Start()
     {
         InitializeGame();
