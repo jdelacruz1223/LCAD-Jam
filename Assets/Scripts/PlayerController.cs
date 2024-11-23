@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     #region imports
     private Sanity sanity;
     private Camera mainCam;
+    private CameraController camControl;
     #endregion
 
     
@@ -18,7 +19,7 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         sanity = GetComponent<Sanity>();
-        audioSource = GetComponent<AudioSource>();
+        camControl = FindFirstObjectByType<CameraController>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -26,20 +27,24 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        MousePointer();
+        
+        if (camControl != null && camControl.currentCam != null)
+        {
+            MousePointer(camControl.currentCam);
+        }
     }
 
     #region audio
     public AudioClip shifterSound;
     public AudioClip shutUpBabySound;
-    private AudioSource audioSource;
-    void PlaySound(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.PlayOneShot(clip);
-        }
-    }
+    // private AudioSource audioSource;
+    // void PlaySound(AudioClip clip)
+    // {
+    //     if (audioSource != null && clip != null)
+    //     {
+    //         audioSource.PlayOneShot(clip);
+    //     }
+    // }
     #endregion
 
 
@@ -48,14 +53,15 @@ public class PlayerController : MonoBehaviour
 
 
     #region control
-    void MousePointer()
+    void MousePointer(Camera currentCam)
     {
-        mainCam = Camera.main;
+        mainCam = currentCam;
         RaycastHit hit;
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-
+        
         if(Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
+            Debug.Log($"Hit: {hit.collider.name}");
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             if(Input.GetMouseButtonDown(0) && hit.collider.CompareTag("SanityMod"))
             {
@@ -63,11 +69,11 @@ public class PlayerController : MonoBehaviour
                 switch(hit.collider.name)
                 {
                     case "shifter":
-                        PlaySound(shifterSound);
+                        AudioManager.Instance.PlaySound(shifterSound);
                         ToggleDriving();
                         break;
                     case "baby":
-                        PlaySound(shutUpBabySound);
+                        AudioManager.Instance.PlaySound(shutUpBabySound);
                         sanity.SetToggleState("babyValue", false);
                         Debug.Log("baby cool");
                         break;
