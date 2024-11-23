@@ -1,25 +1,37 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Android.Gradle.Manifest;
+using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Baby : MonoBehaviour
 {
-    private Sanity sanity;
+    public GameObject player;
+    public Sanity playerSanity;
     void Start()
     {
-        InvokeRepeating("cooldown", 1f, 1f);
+        playerSanity = player.GetComponent<Sanity>();
+        StartCoroutine(RandomNumberGenerator());
     }
 
-    void Update()
+    IEnumerator RandomNumberGenerator()
     {
+        while (true)
+        {
+            float randomDelay = UnityEngine.Random.Range(2f, 10f);
+            yield return new WaitForSeconds(randomDelay);
+            EnableBabyDamage();
+        }
         
     }
 
-    
-
-    
-
+    void EnableBabyDamage()
+    {
+        if(!playerSanity.GetToggleState("babyValue")) 
+        {
+            Debug.Log("baby mad");
+            playerSanity.SetToggleState("babyValue", true);
+        }
+    }
 }

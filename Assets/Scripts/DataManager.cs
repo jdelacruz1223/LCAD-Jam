@@ -7,7 +7,31 @@ public class DataManager : MonoBehaviour
 {
     // Data Manager Singleton Instance
     public static DataManager Instance;
-    private DataManager() {}
+    // private DataManager() {}
+
+    // Timer
+    public float totalTime { get; private set; }
+    public float startTime { get; private set; }
+    private bool isTimerRunning;
+    private bool isDriving;
+
+    // Progress
+    public int distanceTravelled;
+    
+    public bool GetIsDriving()
+    {
+        return isDriving;
+    }
+
+    public void ToggleIsDriving()
+    {
+        isDriving = !isDriving;
+    }
+
+    public int GetDistanceTravelled()
+    {
+        return distanceTravelled;
+    }
 
     void Awake()
     {
@@ -21,4 +45,49 @@ public class DataManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    void Start()
+    {
+        InitializeGame();
+    }
+
+    void Update()
+    {
+        totalTime = GetTotalTimeElapsed();
+    }
+
+    void InitializeGame()
+    {
+        totalTime = 0;
+        startTime = Time.time;
+        isTimerRunning = true;
+        isDriving = true;
+        distanceTravelled = 0;
+    }
+
+    public float GetTotalTimeElapsed()
+    {
+        return Time.time - startTime;
+    }
+
+    public void StopTimer()
+    {
+        isTimerRunning = false;
+    }
+
+    public void StartTimer()
+    {
+        if(isTimerRunning)
+        {
+            startTime = Time.time - GetTotalTimeElapsed();
+            isTimerRunning = true; 
+        }
+    }
+
+    public void IncreaseDistance()
+    {
+        distanceTravelled++;
+    }
+
+
 }

@@ -10,7 +10,7 @@ public class Sanity : MonoBehaviour
 {
     [SerializeField] public float MAX_SANITY = 100;
     [SerializeField] public float currentSanity;
-    
+
     void Start()
     {
         currentSanity = MAX_SANITY;
@@ -24,6 +24,7 @@ public class Sanity : MonoBehaviour
 
     private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
     {
+        {"driveValue", (true, -1)},
         {"babyValue", (false, 1)}
         //insert more cases here
     };
@@ -50,6 +51,19 @@ public class Sanity : MonoBehaviour
         else
         {
             Debug.LogWarning($"{key} not found in dictionary.");
+        }
+    }
+
+    public bool GetToggleState(string key)
+    {
+        if(toggleDictionary.TryGetValue(key, out var toggleValue))
+        {
+            return toggleValue.isActive;
+        }
+        else
+        {
+            Debug.LogWarning($"Key '{key}' not found.");
+            return false;
         }
     }
     
