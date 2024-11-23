@@ -61,7 +61,7 @@ public class DataManager : MonoBehaviour
         totalTime = 0;
         startTime = Time.time;
         isTimerRunning = true;
-        isDriving = true;
+        isDriving = false;
         distanceTravelled = 0;
     }
 
