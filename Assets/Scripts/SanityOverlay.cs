@@ -5,20 +5,19 @@ using UnityEngine.UI;
 
 public class SanityOverlay : MonoBehaviour
 {
-    DataManager dataManager;
+    Sanity sanity;
     //public Image sanityOverlayStatic;
     public RawImage sanityOverlay;
     [Range(0f, 1f)]
     public float alpha = 1;
     private float sanityTimer;
     private const float SANITY_TIMER_MAX = .5f;
-    int sanityValue;
+    float sanityValue;
     void Start()
     {
-        DataManager dataManager = GetComponent<DataManager>();
-        sanityValue = dataManager.playerSanity;
-        sanityOverlay = GetComponent<RawImage>();
-        sanityOverlay.color = new Color(sanityOverlay.color.r, sanityOverlay.color.g, sanityOverlay.color.b, .5f);
+  
+        Sanity sanity = GetComponent<Sanity>();
+        sanityValue = sanity.currentSanity;
     }
 
     // Update is called once per frame
@@ -30,7 +29,7 @@ public class SanityOverlay : MonoBehaviour
             //sanityTimer += Time.deltaTime;
             //if (sanityTimer >= SANITY_TIMER_MAX)
             {
-              //  sanityOverlay.color = new Color(sanityOverlay.color.r, sanityOverlay.color.g, sanityOverlay.color.b, alpha + .1f);
+               sanityOverlay.color = new Color(sanityOverlay.color.r, sanityOverlay.color.g, sanityOverlay.color.b, alpha + .1f);
             }
         }
     }
