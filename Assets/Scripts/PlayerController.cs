@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
                 {
                     case "baby":
                         sanity.SetToggleState("babyValue", false);
+                        Debug.Log("baby cool");
                         break;
                     // insert more cases here
                 }

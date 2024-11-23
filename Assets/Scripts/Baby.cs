@@ -7,10 +7,13 @@ using UnityEngine;
 
 public class Baby : MonoBehaviour
 {
-    private Sanity sanity;
+    public GameObject player;
+    public bool playerSanity;
     void Start()
     {
-        InvokeRepeating("cooldown", 1f, 1f);
+        playerSanity = player.GetComponent<Sanity>();
+        InvokeRepeating("EnableBabyDamage", RandomNumber(), 1f);
+        InvokeRepeating("RandomNumber", 5f, 1f);
     }
 
     void Update()
@@ -18,8 +21,16 @@ public class Baby : MonoBehaviour
         
     }
 
-    
+    float RandomNumber()
+    {
+        return UnityEngine.Random.Range(1,5);
+    }
 
-    
-
+    void EnableBabyDamage()
+    {
+        // if(playerSanity.GetToggleState("babyValue")) 
+        // {
+        //     Debug.Log("baby mad");
+        //     SetToggleState("babyValue", true);
+        }
 }
