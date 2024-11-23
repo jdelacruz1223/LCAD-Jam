@@ -24,6 +24,7 @@ public class Sanity : MonoBehaviour
 
     private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
     {
+        {"driveValue", (true, -1)},
         {"babyValue", (false, 1)}
         //insert more cases here
     };
