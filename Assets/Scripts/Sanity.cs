@@ -27,16 +27,16 @@ public class Sanity : MonoBehaviour
 
 
     #region modifiers
-    private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
+    private Dictionary<string, (bool isActive, float value)> toggleDictionary = new Dictionary<string, (bool, float)>
     {
         {"driveValue", (true, -1)},
         {"babyValue", (false, 2)}
         //insert more cases here
     };
 
-    public int GetTotalModifier()
+    public float GetTotalModifier()
     {
-        int totalModifier = 0;
+        float totalModifier = 0;
         foreach(var toggle in toggleDictionary)
         {
             if(toggle.Value.isActive)

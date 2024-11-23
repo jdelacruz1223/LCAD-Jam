@@ -119,25 +119,78 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12939369
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 12939370}
+  - component: {fileID: 12939371}
+  m_Layer: 0
+  m_Name: GroceryHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &12939370
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12939369}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.0060396376, z: -0, w: 0.99998176}
+  m_LocalPosition: {x: 0.024000049, y: 0.059000015, z: -0.21500003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 885053684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0.692, z: 0}
+--- !u!65 &12939371
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12939369}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5022125, y: 0.5347708, z: 0.048404455}
+  m_Center: {x: -0.029088378, y: -0.2326146, z: -0.032559156}
 --- !u!1001 &14768761
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 885053684}
+    m_TransformParent: {fileID: 1774551028}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 453afc0c01bb83a478ffd93c834a5289, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.450035
+      value: 0.7207
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 453afc0c01bb83a478ffd93c834a5289, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 8.339353
+      value: 0.059000015
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 453afc0c01bb83a478ffd93c834a5289, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.6311285
+      value: 0.656
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 453afc0c01bb83a478ffd93c834a5289, type: 3}
       propertyPath: m_LocalRotation.w
@@ -574,8 +627,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542497020}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.031999946, y: -0.037999988, z: -0.249}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -850,8 +903,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 885053684}
+  - component: {fileID: 885053685}
   m_Layer: 0
-  m_Name: FoodEvent
+  m_Name: GroceryManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -866,15 +920,31 @@ Transform:
   m_GameObject: {fileID: 885053683}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.433726, y: -7.3311963, z: 4.1832757}
+  m_LocalPosition: {x: 1.2172, y: 0.867, z: 1.712}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 14768762}
+  - {fileID: 1774551028}
   - {fileID: 1712280357}
   - {fileID: 542497021}
+  - {fileID: 12939370}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &885053685
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 885053683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484d4c04c3579bc4abf43da73c3522a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointA: {fileID: 0}
+  waypointB: {fileID: 0}
+  speed: 0
 --- !u!1001 &885426067
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1151,7 +1221,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!81 &1198241871
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1459,7 +1529,7 @@ Transform:
   m_GameObject: {fileID: 1712280356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.032, y: -0.038, z: 0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1645,6 +1715,38 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 952cc9107d9d39c41b7211d588a1af93, type: 3}
   m_PrefabInstance: {fileID: 1762643938}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1774551027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1774551028}
+  m_Layer: 0
+  m_Name: groceryTransform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1774551028
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774551027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0.116}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 14768762}
+  m_Father: {fileID: 885053684}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1849664868
 PrefabInstance:
   m_ObjectHideFlags: 0
