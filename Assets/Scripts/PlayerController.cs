@@ -10,13 +10,15 @@ public class PlayerController : MonoBehaviour
 {
     #region imports
     private Sanity sanity;
-    private Baby baby;
     private Camera mainCam;
     #endregion
+
+    
+
     void Awake()
     {
-        baby = GetComponent<Baby>();
         sanity = GetComponent<Sanity>();
+        audioSource = GetComponent<AudioSource>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -26,6 +28,20 @@ public class PlayerController : MonoBehaviour
     {
         MousePointer();
     }
+
+    #region audio
+    public AudioClip shifterSound;
+    public AudioClip shutUpBabySound;
+    private AudioSource audioSource;
+    void PlaySound(AudioClip clip)
+    {
+        if (audioSource != null && clip != null)
+        {
+            audioSource.PlayOneShot(clip);
+        }
+    }
+    #endregion
+
 
     
 
@@ -47,9 +63,11 @@ public class PlayerController : MonoBehaviour
                 switch(hit.collider.name)
                 {
                     case "shifter":
+                        PlaySound(shifterSound);
                         ToggleDriving();
                         break;
                     case "baby":
+                        PlaySound(shutUpBabySound);
                         sanity.SetToggleState("babyValue", false);
                         Debug.Log("baby cool");
                         break;
@@ -59,10 +77,10 @@ public class PlayerController : MonoBehaviour
             }
             
         }
-        else
-        {
-            // Debug.Log("None");
-        }
+        // else
+        // {
+        //     // Debug.Log("None");
+        // }
     }
 
     void ToggleDriving()
