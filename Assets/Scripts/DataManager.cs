@@ -16,7 +16,7 @@ public class DataManager : MonoBehaviour
     private bool isDriving;
 
     // Progress
-    public int distanceTravelled;
+    public int distanceTravelled; // UI: total distance travelled 
     
     public bool GetIsDriving()
     {

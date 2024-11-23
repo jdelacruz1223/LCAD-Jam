@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class sanityUI : MonoBehaviour
 {
     DataManager dataManager;
+
     public Slider slider;
     int sanityValue;
 
