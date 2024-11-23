@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     #region imports
     private Sanity sanity;
     private Camera mainCam;
+    private CameraController camControl;
     #endregion
 
     
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
     {
         sanity = GetComponent<Sanity>();
         audioSource = GetComponent<AudioSource>();
+        camControl = FindFirstObjectByType<CameraController>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -26,7 +28,10 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        MousePointer();
+        if (camControl != null && camControl.currentCam != null)
+        {
+            MousePointer(camControl.currentCam);
+        }
     }
 
     #region audio
@@ -48,9 +53,9 @@ public class PlayerController : MonoBehaviour
 
 
     #region control
-    void MousePointer()
+    void MousePointer(Camera currentCam)
     {
-        mainCam = Camera.main;
+        mainCam = currentCam;
         RaycastHit hit;
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
 
