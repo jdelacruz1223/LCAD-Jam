@@ -16,16 +16,23 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ToggleCameras();
-        }
+        ToggleCameras();
     }
 
     void ToggleCameras()
     {
-        mainCamera.enabled = !mainCamera.enabled;
-        currentCam = secondaryCamera;
-        secondaryCamera.enabled = !secondaryCamera.enabled;
+        if(Input.GetKeyDown(KeyCode.Space) && mainCamera.enabled == true)
+        {
+            mainCamera.enabled = false;
+            secondaryCamera.enabled = true;
+            currentCam = secondaryCamera;
+        }
+        else if(Input.GetKeyDown(KeyCode.Space) && mainCamera.enabled == false)
+        {
+            mainCamera.enabled = true;
+            secondaryCamera.enabled = false;
+            currentCam = mainCamera;
+        }
+        
     }
 }
