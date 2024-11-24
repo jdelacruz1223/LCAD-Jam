@@ -43,7 +43,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    
+
 
 
     #region driving
@@ -72,7 +72,7 @@ public class DataManager : MonoBehaviour
         travelBar.UpdateTravelBar();
 
 
-        if(distanceTravelled >= finalDestinationTravelledAmount)
+        if (distanceTravelled >= finalDestinationTravelledAmount)
         {
             //Win!
         }
@@ -98,12 +98,36 @@ public class DataManager : MonoBehaviour
 
     public void StartTimer()
     {
-        if(isTimerRunning)
+        if (isTimerRunning)
         {
             startTime = Time.time - GetTotalTimeElapsed();
-            isTimerRunning = true; 
+            isTimerRunning = true;
         }
     }
 
+    #endregion
+
+    #region endings
+    public Dictionary<string, bool> endingsTracker = new Dictionary<string, bool>()
+    {
+        {"Cigarette", false},
+        {"Sanity", false},
+        {"Grocery", false},
+        {"True", false},
+
+    };
+    //SetToggleState("Cigarette", true);
+    //GetToggleState("Cigarette");
+    public void SetToggleState(string key, bool state) // call SetToggleState("key", T/F) to change keys
+    {
+        //if (toggles.ContainsKey(key))
+        //{
+        //    SetToggleState[key] = state; ;
+        //}
+        //else
+        //{
+        //    Debug.LogWarning($"{key} not found in dictionary.");
+        //}
+    }
     #endregion
 }
