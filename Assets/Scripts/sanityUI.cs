@@ -12,7 +12,7 @@ public class sanityUI : MonoBehaviour
     public Image sanityOverlayImage;
     public sanityUI sanityBar;
     float sanityValue;
-    int distanceTraveled;
+    float distanceTraveled;
   
 
 

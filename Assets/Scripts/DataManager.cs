@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
+    public TravelBar travelBar;
+
+
     // private DataManager() {}
     void Start()
     {
         InitializeGame();
+        travelBar = FindFirstObjectByType<TravelBar>();
     }
     void InitializeGame()
     {
@@ -18,6 +23,8 @@ public class DataManager : MonoBehaviour
         isTimerRunning = true;
         isDriving = false;
         distanceTravelled = 0;
+
+        InvokeRepeating("IncreaseDistance", 1f, 1f);
     }
     void Update()
     {
@@ -41,7 +48,8 @@ public class DataManager : MonoBehaviour
 
     #region driving
     private bool isDriving;
-    public int distanceTravelled;
+    public float distanceTravelled;
+    public float finalDestinationTravelledAmount = 100;
 
     public bool GetIsDriving()
     {
@@ -53,13 +61,21 @@ public class DataManager : MonoBehaviour
         isDriving = !isDriving;
     }
 
-    public int GetDistanceTravelled()
+    public float GetDistanceTravelled()
     {
         return distanceTravelled;
     }
     public void IncreaseDistance()
     {
         distanceTravelled++;
+
+        travelBar.UpdateTravelBar();
+
+
+        if(distanceTravelled >= finalDestinationTravelledAmount)
+        {
+            //Win!
+        }
     }
     #endregion
 
