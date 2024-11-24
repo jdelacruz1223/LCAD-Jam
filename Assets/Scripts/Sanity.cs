@@ -21,11 +21,6 @@ public class Sanity : MonoBehaviour
 
 
 
-
-
-
-
-
     #region modifiers
     private Dictionary<string, (bool isActive, int value)> toggleDictionary = new Dictionary<string, (bool, int)>
     {
@@ -74,10 +69,6 @@ public class Sanity : MonoBehaviour
     #endregion
     
 
-
-
-
-
     
     #region basic functions
     public void DamageSanity()
@@ -96,9 +87,10 @@ public class Sanity : MonoBehaviour
         }
         
     }
-    void Die()
+    public void Die()
     {
         Debug.Log("Insert game over.");
+        Application.Quit();
     }
     #endregion
 }
