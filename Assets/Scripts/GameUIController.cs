@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GameUIController : MonoBehaviour
 {
-    public void Highlight(GameObject gameObject, bool isHighlighted){
-        gameObject.GetComponent<MeshRenderer>().material.SetFloat("_isHighlighted", isHighlighted?1:0);
+    public void Highlight(GameObject obj, bool isHighlighted){
+        obj.GetComponent<MeshRenderer>().material.SetFloat("_isHighlighted", isHighlighted?1:0);
     }
 }
