@@ -32,6 +32,6 @@ public class DebugTimers : MonoBehaviour
         var m = t0/60;
         var s = t0 - m*60;
         var ms = (int)((currentTime - t0)*100);
-        timeText.text = $"{m:00}:{s:00}:{ms:00}";
+        timeText.text = $"debug; {m:00}:{s:00}:{ms:00}";
     }
 }

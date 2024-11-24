@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - SanityMod
+  - RoadWarning
+  - RoadDeath
   layers:
   - Default
   - TransparentFX
