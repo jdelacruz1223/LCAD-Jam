@@ -51,8 +51,12 @@ public class Baby : MonoBehaviour, HighlightInterface
     {
         if(!playerSanity.GetToggleState("babyValue")) 
         {
-            AudioManager.Instance.PlaySound(babyCry);
-            // Debug.Log("baby mad");
+            if(AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound(babyCry);
+
+            }
+            Debug.Log("baby mad");
             playerSanity.SetToggleState("babyValue", true);
         }
     }
