@@ -6,15 +6,15 @@ public class RaycastController : MonoBehaviour
 {
     private HighlightInterface lastHighlighted = null;
     public GameObject target;
-    // move mouse pointer raycast here later?
     public void CastCheck(RaycastHit hit)
     {
         target = hit.collider.gameObject;
-        Debug.Log($"Hit: {hit.collider.name}");
+        Debug.Log($"Hit: {target.name}, Tag: {target.tag}");
 
         if(target.gameObject.CompareTag("SanityMod"))
         {
             HighlightInterface highlightable = target.GetComponent<HighlightInterface>();
+            print($"highlightable {highlightable}");
             if(highlightable != null)
             {
                 if(lastHighlighted != highlightable)
@@ -25,13 +25,13 @@ public class RaycastController : MonoBehaviour
                 }
             }
         }
-        else
-        {
-            Debug.Log("unhighlight");
-            UnhighlightLastObject();
-        }
+        // else
+        // {
+        //     Debug.Log("unhighlight");
+        //     UnhighlightLastObject();
+        // }
     }
-    void UnhighlightLastObject()
+    public void UnhighlightLastObject()
     {
         if(lastHighlighted != null)
         {

@@ -20,6 +20,7 @@ public class Baby : MonoBehaviour, HighlightInterface
     {
         playerSanity = player.GetComponent<Sanity>();
         if (playerSanity == null) Debug.LogError($"[{gameObject}]: {nameof(playerSanity)} not found in the scene!");
+
         uifx = FindFirstObjectByType<GameUIController>(); // might be wrong choice of find type?
         if (uifx == null) Debug.LogError($"[{gameObject}]: {nameof(uifx)} not found in the scene!");
 
@@ -51,7 +52,7 @@ public class Baby : MonoBehaviour, HighlightInterface
         if(!playerSanity.GetToggleState("babyValue")) 
         {
             AudioManager.Instance.PlaySound(babyCry);
-            Debug.Log("baby mad");
+            // Debug.Log("baby mad");
             playerSanity.SetToggleState("babyValue", true);
         }
     }

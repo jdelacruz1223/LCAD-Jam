@@ -36,11 +36,7 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        
-        if (camControl != null && camControl.currentCam != null)
-        {
-            MousePointer(camControl.currentCam);
-        }
+        if (camControl != null && camControl.currentCam != null) { MousePointer(camControl.currentCam); }
     }
 
 
@@ -67,7 +63,7 @@ public class PlayerController : MonoBehaviour
                     case "baby":
                         AudioManager.Instance.PlaySound(shutUpBabySound);
                         sanity.SetToggleState("babyValue", false);
-                        Debug.Log("baby cool");
+                        // Debug.Log("baby cool");
                         break;
                     case "groceryTransform":
                         AudioManager.Instance.PlaySound(groceryBagSound);
@@ -85,9 +81,13 @@ public class PlayerController : MonoBehaviour
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
+            Debug.Log($"raycast hit {hit}");
             rayControl.CastCheck(hit);
             MouseFunction(rayControl.target);
-              
+        }
+        else
+        {
+            rayControl.UnhighlightLastObject();
         }
     }
     void ToggleDriving()

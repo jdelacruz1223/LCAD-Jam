@@ -955,7 +955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 885053683}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 216c3bb3d4bb28e4791fd2587ce4030c, type: 3}
   m_Name: 
@@ -1765,6 +1765,7 @@ GameObject:
   - component: {fileID: 1774551028}
   - component: {fileID: 1774551030}
   - component: {fileID: 1774551029}
+  - component: {fileID: 1774551031}
   m_Layer: 0
   m_Name: groceryTransform
   m_TagString: SanityMod
@@ -1836,6 +1837,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1774551031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774551027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216c3bb3d4bb28e4791fd2587ce4030c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waypointA: {fileID: 1712280357}
+  waypointB: {fileID: 542497021}
+  groceryObject: {fileID: 1774551027}
+  speed: 0.02
+  returnSpeed: 2
+  interact: 0
 --- !u!1001 &1849664868
 PrefabInstance:
   m_ObjectHideFlags: 0
