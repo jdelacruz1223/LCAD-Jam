@@ -22,11 +22,7 @@ public class AudioManager : MonoBehaviour
         }
 
         audioSource = GetComponent<AudioSource>();
-
-        if (audioSource == null)
-        {
-            Debug.LogError("AudioSource component not found on AudioManager.");
-        }
+        if (audioSource == null) Debug.LogError($"[{gameObject}]: {nameof(audioSource)} not found in the scene!");
     }
 
     public void PlaySound(AudioClip clip)

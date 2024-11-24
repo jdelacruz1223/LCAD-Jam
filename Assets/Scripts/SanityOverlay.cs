@@ -16,7 +16,8 @@ public class SanityOverlay : MonoBehaviour
     void Start()
     {
   
-        Sanity sanity = GetComponent<Sanity>();
+        sanity = GetComponent<Sanity>();
+        if (sanity == null) Debug.LogError($"[{gameObject}]: {nameof(sanity)} not found in the scene!");
         sanityValue = sanity.currentSanity;
     }
 

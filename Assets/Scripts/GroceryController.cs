@@ -1,46 +1,65 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Pool;
 
 public class GroceryController : MonoBehaviour
 {
     [SerializeField] public Transform waypointA;
     [SerializeField] public Transform waypointB;
+    [SerializeField] public GameObject groceryObject;
     [SerializeField] public float speed = 2f;
     [SerializeField] public float returnSpeed = 2f;
-    public GameObject groceryObject;
+    public bool interact = false;
     private Transform targetWaypoint;
-    public bool interact;
+    private GameUIController uifx;
+
+    void Awake()
+    {
+        uifx = FindFirstObjectByType<GameUIController>(); // might be wrong choice of find type?
+        if (uifx == null) Debug.LogError($"[{gameObject}]: {nameof(uifx)} not found in the scene!");
+    }
     void Start()
     {
-        interact = false;
         targetWaypoint = waypointB;
+        interact = false;
     }
+
+    #region interface
+    public void Highlight(bool isHighlighted){
+        if (uifx != null)
+        {
+            uifx.Highlight(gameObject, isHighlighted);
+        } 
+    }
+    #endregion
 
     void Update()
     {
-        // Debug.Log($"interact: {interact}");
+        // Debug.Log($"interact {interact} ");
         if(!interact)
-        {
+        {   
             groceryObject.transform.position = Vector3.MoveTowards(groceryObject.transform.position, targetWaypoint.position, speed * Time.deltaTime);
         }
         else
         {
             groceryObject.transform.position = Vector3.MoveTowards(groceryObject.transform.position, waypointA.position, returnSpeed * Time.deltaTime);
         }
-        
-        if(Vector3.Distance(groceryObject.transform.position, waypointA.position) < .01f)
+        // Debug.Log(groceryObject.transform.position);
+        // Debug.Log(waypointA.position);
+
+        if(Vector3.Distance(groceryObject.transform.position, waypointA.position) <= 0.1f)
         {
             interact = false;
         }
-        // Debug.Log($"groceryObject: {waypointA.position}");
-        // Debug.Log($"waypointA: {waypointA.position}");
+        
     }
 
     public void SetTrue()
     {
         interact = true;
     }
+
+
 }
