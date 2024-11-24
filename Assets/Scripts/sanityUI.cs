@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class sanityUI : MonoBehaviour
 {
-    DataManager dataManager;
     Sanity sanity;
     [Range(0f, 1f)]
     public float alpha = 0f;
@@ -20,11 +19,10 @@ public class sanityUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DataManager dataManager = GetComponent<DataManager>();
         Sanity sanity = GetComponent<Sanity>();
         float currentSanity = sanity.currentSanity;
         sanityValue = currentSanity;
-        distanceTraveled = dataManager.distanceTravelled;// initialize with whatever the set value is in DataManager
+        distanceTraveled = DataManager.Instance.distanceTravelled;// initialize with whatever the set value is in DataManager
 
     }
 
