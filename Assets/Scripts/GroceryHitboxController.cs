@@ -13,7 +13,8 @@ public class GroceryHitboxController : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Bags dropped, Death");
+        Debug.Log("Grocery Ending");
+        // insert toggle here
         sanity.Die();
     }
 
