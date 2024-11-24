@@ -8,6 +8,8 @@ public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
     public TravelBar travelBar;
+    public int cigaretteCount;
+    
 
 
     // private DataManager() {}
@@ -23,6 +25,7 @@ public class DataManager : MonoBehaviour
         isTimerRunning = true;
         isDriving = false;
         distanceTravelled = 0;
+        cigaretteCount = 20;
 
         InvokeRepeating("IncreaseDistance", 1f, 1f);
     }

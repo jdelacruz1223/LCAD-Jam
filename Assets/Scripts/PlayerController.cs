@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
 
 
     #region control
+    Animator animator;
     void MouseFunction(GameObject target) //expandable
     {
         if(Input.GetMouseButtonDown(0) && target.CompareTag("SanityMod"))
@@ -71,6 +72,7 @@ public class PlayerController : MonoBehaviour
                     case "groceryTransform":
                         AudioManager.Instance.PlaySound(groceryBagSound);
                         groceryControl.SetTrue();
+                        animator.SetTrigger("isGroceryBagging");
                         // Debug.Log("the bag");
                         break;
                     // insert more cases here
