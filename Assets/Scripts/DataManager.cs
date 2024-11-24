@@ -15,6 +15,11 @@ public class DataManager : MonoBehaviour
     {
         InitializeGame();
         travelBar = FindFirstObjectByType<TravelBar>();
+        SetToggleState("Cigarette", false);
+        SetToggleState("Grocery", false);
+        SetToggleState("Sanity", false);
+        SetToggleState("Crash", false);
+        SetToggleState("True", false);
     }
     void InitializeGame()
     {
@@ -114,6 +119,7 @@ public class DataManager : MonoBehaviour
         {"Sanity", false},
         {"Grocery", false},
         {"True", false},
+        {"Crash", false}
 
     };
     public void SetToggleState(string key, bool state)

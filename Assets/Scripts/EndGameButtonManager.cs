@@ -15,7 +15,7 @@ public class EndGameButtonManager : MonoBehaviour
         SceneManager.LoadScene("TitleScreen");
     }
 
-    public void Game()
+    public void GameEnd()
     {
         Application.Quit();
     }
