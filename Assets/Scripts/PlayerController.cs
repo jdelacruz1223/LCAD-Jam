@@ -12,14 +12,16 @@ public class PlayerController : MonoBehaviour
     private Sanity sanity;
     private Camera mainCam;
     private CameraController camControl;
+    private GroceryController groceryControl;
     #endregion
 
     
 
     void Awake()
     {
-        sanity = GetComponent<Sanity>();
+        sanity = FindFirstObjectByType<Sanity>();
         camControl = FindFirstObjectByType<CameraController>();
+        groceryControl = FindFirstObjectByType<GroceryController>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -37,14 +39,7 @@ public class PlayerController : MonoBehaviour
     #region audio
     public AudioClip shifterSound;
     public AudioClip shutUpBabySound;
-    // private AudioSource audioSource;
-    // void PlaySound(AudioClip clip)
-    // {
-    //     if (audioSource != null && clip != null)
-    //     {
-    //         audioSource.PlayOneShot(clip);
-    //     }
-    // }
+    public AudioClip groceryBagSound;
     #endregion
 
 
@@ -77,16 +72,15 @@ public class PlayerController : MonoBehaviour
                         sanity.SetToggleState("babyValue", false);
                         Debug.Log("baby cool");
                         break;
+                    case "groceryTransform":
+                        AudioManager.Instance.PlaySound(groceryBagSound);
+                        groceryControl.SetTrue();
+                        Debug.Log("the bag");
+                        break;
                     // insert more cases here
-                }
-                
-            }
-            
+                } 
+            }  
         }
-        // else
-        // {
-        //     // Debug.Log("None");
-        // }
     }
 
     void ToggleDriving()

@@ -96,7 +96,7 @@ public class Sanity : MonoBehaviour
         }
         
     }
-    void Die()
+    public void Die()
     {
         Debug.Log("Insert game over.");
     }
