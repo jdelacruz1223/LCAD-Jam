@@ -17,20 +17,27 @@ public class animationStateController : MonoBehaviour
     {
         if (Input.GetKey("A"))
         {
+            IsSteeringLeft
+            IsSteeringRight
+            Is
+            
             // is there a way to reference when the existing code for when the player turns left? and then we use that to set the bool to true?
             // Is that a smart way to do it?
+
+
+            // This code that's written right now is the best I can do. I don't know how to execute referencing the other sections that would have player interactions.
             
             //if we can't figure this out, would it be easier to export specific arm poses as fbxs without animation data.
             //Then create code that references the functions that already exist, like pressing A to steer.
             //Every time that happens we would turn these fbxs' visibility on and off for every player interaction.
 
-            animator.SetBool("IsSteeringLeft", true);
+            animator.SetBool("IsSteeringRight", true);
         }
         else
         // if (!Input.GetKey("A"))
         {
 
-            animator.SetBool("IsSteeringLeft", false);
+            animator.SetBool("IsSteeringRight", false);
         
         }
     
