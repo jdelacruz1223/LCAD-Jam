@@ -35,7 +35,11 @@ public class Baby : MonoBehaviour
     {
         if(!playerSanity.GetToggleState("babyValue")) 
         {
-            AudioManager.Instance.PlaySound(babyCry);
+            if(AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound(babyCry);
+
+            }
             Debug.Log("baby mad");
             playerSanity.SetToggleState("babyValue", true);
         }

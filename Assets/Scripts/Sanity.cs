@@ -7,16 +7,23 @@ using Unity.VisualScripting;
 using UnityEditor;
 #endif
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sanity : MonoBehaviour
 {
     [SerializeField] public float MAX_SANITY = 100;
     [SerializeField] public float currentSanity;  // UI: currently tracks total sanity
 
+    public SanityBar sanityBar;
+    public Image sanityOverlay;
+
+    public float sanityOverlayStartInverseAmount = .5f; //at .5, it starts the overlay at 50%. at .6, it starts the overlay at 40%. .4 starts at 40% and so on. It's the inverse!
+
     void Start()
     {
         currentSanity = MAX_SANITY;
         InvokeRepeating("DamageSanity", 1f, 1f);
+        sanityBar = FindFirstObjectByType<SanityBar>();
     }
 
 
@@ -84,11 +91,18 @@ public class Sanity : MonoBehaviour
     {
         if(currentSanity > 0)
         {
-            if(this.currentSanity >= MAX_SANITY)
+            
+            this.currentSanity -= GetTotalModifier();
+            if (this.currentSanity >= MAX_SANITY)
             {
                 currentSanity = MAX_SANITY;
             }
-            this.currentSanity -= GetTotalModifier();
+
+            sanityBar.UpdateSanityBar();
+
+            Color overlayColor = Color.white;
+            overlayColor.a = (1 - (currentSanity / MAX_SANITY)) - sanityOverlayStartInverseAmount;
+            sanityOverlay.color = overlayColor;
         }
         if(currentSanity <= 0)
         {
