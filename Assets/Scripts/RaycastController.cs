@@ -6,6 +6,7 @@ public class RaycastController : MonoBehaviour
 {
     private HighlightInterface lastHighlighted = null;
     public GameObject target;
+    
     public void CastCheck(RaycastHit hit)
     {
         target = hit.collider.gameObject;

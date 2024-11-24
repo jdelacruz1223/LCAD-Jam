@@ -30,7 +30,7 @@ public class GroceryController : MonoBehaviour
     public void Highlight(bool isHighlighted){
         if (uifx != null)
         {
-            uifx.Highlight(groceryObject, isHighlighted);
+            uifx.Highlight(gameObject, isHighlighted);
         } 
     }
     #endregion
