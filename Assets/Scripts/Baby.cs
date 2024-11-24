@@ -5,8 +5,10 @@ using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Baby : MonoBehaviour
+public class Baby : MonoBehaviour, HighlightInterface
 {
+    public Baby Instance;
+    public GameUIController uifx;
     public GameObject player;
     public Sanity playerSanity;
 
@@ -14,11 +16,25 @@ public class Baby : MonoBehaviour
     public AudioClip babyCry;
     #endregion
     
-    void Start()
+    void Awake()
     {
         playerSanity = player.GetComponent<Sanity>();
+        if (playerSanity == null) Debug.LogError($"[{gameObject}]: {nameof(playerSanity)} not found in the scene!");
+
+        uifx = FindFirstObjectByType<GameUIController>(); // might be wrong choice of find type?
+        if (uifx == null) Debug.LogError($"[{gameObject}]: {nameof(uifx)} not found in the scene!");
+
         StartCoroutine(RandomNumberGenerator());
+        
     }
+    #region interface
+    public void Highlight(bool isHighlighted){
+        if (uifx != null)
+        {
+            uifx.Highlight(gameObject, isHighlighted);
+        } 
+    }
+    #endregion
 
     IEnumerator RandomNumberGenerator()
     {
@@ -35,7 +51,11 @@ public class Baby : MonoBehaviour
     {
         if(!playerSanity.GetToggleState("babyValue")) 
         {
-            AudioManager.Instance.PlaySound(babyCry);
+            if(AudioManager.Instance != null)
+            {
+                AudioManager.Instance.PlaySound(babyCry);
+
+            }
             Debug.Log("baby mad");
             playerSanity.SetToggleState("babyValue", true);
         }
