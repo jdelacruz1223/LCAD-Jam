@@ -10,12 +10,12 @@ public class RaycastController : MonoBehaviour
     public void CastCheck(RaycastHit hit)
     {
         target = hit.collider.gameObject;
-        Debug.Log($"Hit: {target.name}, Tag: {target.tag}");
+        // Debug.Log($"Hit: {target.name}, Tag: {target.tag}");
 
         if(target.gameObject.CompareTag("SanityMod"))
         {
             HighlightInterface highlightable = target.GetComponent<HighlightInterface>();
-            print($"highlightable {highlightable}");
+            // print($"highlightable {highlightable}");
             if(highlightable != null)
             {
                 if(lastHighlighted != highlightable)

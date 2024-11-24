@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -45,6 +47,7 @@ public class PlayerController : MonoBehaviour
     public AudioClip shifterSound;
     public AudioClip shutUpBabySound;
     public AudioClip groceryBagSound;
+    public AudioClip carWarning;
     #endregion
 
 
@@ -53,12 +56,12 @@ public class PlayerController : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0) && target.CompareTag("SanityMod"))
             {
-                Debug.Log($"Hit: {target.name}");
+                // Debug.Log($"Hit: {target.name}");
                 switch(target.name)
                 {
                     case "shifter":
                         AudioManager.Instance.PlaySound(shifterSound);
-                        ToggleDriving();
+                        ToggleDriving(); //insert road behavior here
                         break;
                     case "baby":
                         AudioManager.Instance.PlaySound(shutUpBabySound);
@@ -68,11 +71,24 @@ public class PlayerController : MonoBehaviour
                     case "groceryTransform":
                         AudioManager.Instance.PlaySound(groceryBagSound);
                         groceryControl.SetTrue();
-                        Debug.Log("the bag");
+                        // Debug.Log("the bag");
                         break;
                     // insert more cases here
                 } 
             }
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("RoadWarning"))
+        {
+            Debug.Log("RoadWarning");
+            AudioManager.Instance.PlaySound(carWarning);
+        } 
+        else if(other.CompareTag("RoadDeath"))
+        {
+            Debug.Log("RoadDeath");
+            sanity.Die();
+        }
     }
     void MousePointer(Camera currentCam)
     {

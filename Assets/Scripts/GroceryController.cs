@@ -49,7 +49,7 @@ public class GroceryController : MonoBehaviour
         // Debug.Log(groceryObject.transform.position);
         // Debug.Log(waypointA.position);
 
-        if(groceryObject.transform.position == waypointA.position)
+        if(Vector3.Distance(groceryObject.transform.position, waypointA.position) <= 0.1f)
         {
             interact = false;
         }

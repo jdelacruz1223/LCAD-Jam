@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrafficController : MonoBehaviour
+public class TrafficController : MonoBehaviour, RoadTrafficInterface
 {
-    // Start is called before the first frame update
+    [SerializeField] float minDriftSpeed;
+    [SerializeField] float maxDriftSpeed;
+    [SerializeField] int minDelay;
+    [SerializeField] int maxDelay;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public float GetRandomSpeed()
+    {
+        return Random.Range(minDriftSpeed, maxDriftSpeed);
+    }
+
+    public float GetRandomDelay()
+    {
+        return Random.Range(minDelay, maxDelay);
     }
 }
