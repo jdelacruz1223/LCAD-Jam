@@ -9,6 +9,11 @@ public class Baby : MonoBehaviour
 {
     public GameObject player;
     public Sanity playerSanity;
+
+    #region audio
+    public AudioClip babyCry;
+    #endregion
+    
     void Start()
     {
         playerSanity = player.GetComponent<Sanity>();
@@ -30,6 +35,7 @@ public class Baby : MonoBehaviour
     {
         if(!playerSanity.GetToggleState("babyValue")) 
         {
+            AudioManager.Instance.PlaySound(babyCry);
             Debug.Log("baby mad");
             playerSanity.SetToggleState("babyValue", true);
         }

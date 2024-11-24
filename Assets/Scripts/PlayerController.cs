@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -12,21 +10,18 @@ public class PlayerController : MonoBehaviour
 {
     #region imports
     private Sanity sanity;
-    private GroceryController grocery;
     private Camera mainCam;
+    private CameraController camControl;
+    private GroceryController groceryControl;
     #endregion
 
     
 
     void Awake()
     {
-        sanity = GetComponent<Sanity>();
-<<<<<<< Updated upstream
-        audioSource = GetComponent<AudioSource>();
-=======
-        grocery = FindFirstObjectByType<GroceryController>();
+        sanity = FindFirstObjectByType<Sanity>();
         camControl = FindFirstObjectByType<CameraController>();
->>>>>>> Stashed changes
+        groceryControl = FindFirstObjectByType<GroceryController>();
         if (!sanity)
         {
             Debug.LogError("Sanity component not found.");
@@ -34,25 +29,17 @@ public class PlayerController : MonoBehaviour
     }
     void Update()
     {
-        MousePointer();
+        
+        if (camControl != null && camControl.currentCam != null)
+        {
+            MousePointer(camControl.currentCam);
+        }
     }
 
     #region audio
     public AudioClip shifterSound;
     public AudioClip shutUpBabySound;
-<<<<<<< Updated upstream
-    private AudioSource audioSource;
-    void PlaySound(AudioClip clip)
-    {
-        if (audioSource != null && clip != null)
-        {
-            audioSource.PlayOneShot(clip);
-        }
-    }
-=======
     public AudioClip groceryBagSound;
-
->>>>>>> Stashed changes
     #endregion
 
 
@@ -61,24 +48,15 @@ public class PlayerController : MonoBehaviour
 
 
     #region control
-<<<<<<< Updated upstream
-    void MousePointer()
-=======
-    [SerializeField] public GameObject groceryObject;
-    
     void MousePointer(Camera currentCam)
->>>>>>> Stashed changes
     {
-        mainCam = Camera.main;
+        mainCam = currentCam;
         RaycastHit hit;
         Ray ray = mainCam.ScreenPointToRay(Input.mousePosition);
-
+        
         if(Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
-<<<<<<< Updated upstream
-=======
-            // Debug.Log($"Hit: {hit.collider.name}");
->>>>>>> Stashed changes
+            Debug.Log($"Hit: {hit.collider.name}");
             Debug.DrawLine(ray.origin, hit.point, Color.red);
             if(Input.GetMouseButtonDown(0) && hit.collider.CompareTag("SanityMod"))
             {
@@ -86,22 +64,22 @@ public class PlayerController : MonoBehaviour
                 switch(hit.collider.name)
                 {
                     case "shifter":
-                        PlaySound(shifterSound);
+                        AudioManager.Instance.PlaySound(shifterSound);
                         ToggleDriving();
                         break;
                     case "baby":
-                        PlaySound(shutUpBabySound);
+                        AudioManager.Instance.PlaySound(shutUpBabySound);
                         sanity.SetToggleState("babyValue", false);
                         Debug.Log("baby cool");
                         break;
                     case "groceryTransform":
                         AudioManager.Instance.PlaySound(groceryBagSound);
-                        grocery.SetTrue();
+                        groceryControl.SetTrue();
                         Debug.Log("the bag");
                         break;
                     // insert more cases here
-                }
-            } 
+                } 
+            }  
         }
     }
 
