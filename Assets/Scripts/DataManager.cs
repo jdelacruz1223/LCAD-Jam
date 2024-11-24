@@ -116,18 +116,30 @@ public class DataManager : MonoBehaviour
         {"True", false},
 
     };
-    //SetToggleState("Cigarette", true);
-    //GetToggleState("Cigarette");
-    public void SetToggleState(string key, bool state) // call SetToggleState("key", T/F) to change keys
+    public void SetToggleState(string key, bool state)
     {
-        //if (toggles.ContainsKey(key))
-        //{
-        //    SetToggleState[key] = state; ;
-        //}
-        //else
-        //{
-        //    Debug.LogWarning($"{key} not found in dictionary.");
-        //}
+        if (endingsTracker.ContainsKey(key))
+        {
+            endingsTracker[key] = state;
+            Debug.Log($"Set {key} to {state}");
+        }
+        else
+        {
+            Debug.LogWarning($"Key '{key}' not found in endingsTracker dictionary.");
+        }
     }
+
+    public bool GetToggleState(string key)
+{
+    if (endingsTracker.ContainsKey(key))
+    {
+        return endingsTracker[key]; // Return the value for the key
+    }
+    else
+    {
+        Debug.LogWarning($"Key '{key}' not found in endingsTracker dictionary.");
+        return false; // Return default value if key is not found
+    }
+}
     #endregion
 }
