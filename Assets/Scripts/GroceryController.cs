@@ -13,11 +13,27 @@ public class GroceryController : MonoBehaviour
     [SerializeField] public float returnSpeed = 2f;
     public bool interact = false;
     private Transform targetWaypoint;
+    private GameUIController uifx;
+
+    void Awake()
+    {
+        uifx = FindFirstObjectByType<GameUIController>(); // might be wrong choice of find type?
+        if (uifx == null) Debug.LogError($"[{gameObject}]: {nameof(uifx)} not found in the scene!");
+    }
     void Start()
     {
         targetWaypoint = waypointB;
         interact = false;
     }
+
+    #region interface
+    public void Highlight(bool isHighlighted){
+        if (uifx != null)
+        {
+            uifx.Highlight(gameObject, isHighlighted);
+        } 
+    }
+    #endregion
 
     void Update()
     {
@@ -33,7 +49,7 @@ public class GroceryController : MonoBehaviour
         // Debug.Log(groceryObject.transform.position);
         // Debug.Log(waypointA.position);
 
-        if(groceryObject.transform.position == waypointA.position)
+        if(Vector3.Distance(groceryObject.transform.position, waypointA.position) <= 0.1f)
         {
             interact = false;
         }
