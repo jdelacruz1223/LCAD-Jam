@@ -82,12 +82,26 @@ public class RoadController : MonoBehaviour, RoadTrafficInterface
         }
     }
 
+
+    Animator animator;
     private void HandlePlayerInput()
     {
-        if ((Input.GetKeyDown(KeyCode.A) && dir == 1) || (Input.GetKeyDown(KeyCode.D) && dir == 0))
+        // if ((Input.GetKeyDown(KeyCode.A) && dir == 1) || (Input.GetKeyDown(KeyCode.D) && dir == 0))
+        // {
+        //     Debug.Log("Player input correct! Returning to origin.");
+        //     returning = true;
+        // }
+        if(Input.GetKeyDown(KeyCode.A) && dir == 1)
         {
             Debug.Log("Player input correct! Returning to origin.");
             returning = true;
+            animator.SetTrigger("isSteeringLeft");
+        }
+        else if(Input.GetKeyDown(KeyCode.D) && dir == 0)
+        {
+            Debug.Log("Player input correct! Returning to origin.");
+            returning = true;
+            animator.SetTrigger("isSteeringRight");
         }
     }
 
