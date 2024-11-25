@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
@@ -17,6 +18,11 @@ public class DataManager : MonoBehaviour
     {
         InitializeGame();
         travelBar = FindFirstObjectByType<TravelBar>();
+        SetToggleState("Cigarette", false);
+        SetToggleState("Grocery", false);
+        SetToggleState("Sanity", false);
+        SetToggleState("Crash", false);
+        SetToggleState("True", false);
     }
     void InitializeGame()
     {
@@ -46,7 +52,7 @@ public class DataManager : MonoBehaviour
         }
     }
 
-    
+
 
 
     #region driving
@@ -75,7 +81,7 @@ public class DataManager : MonoBehaviour
         travelBar.UpdateTravelBar();
 
 
-        if(distanceTravelled >= finalDestinationTravelledAmount)
+        if (distanceTravelled >= finalDestinationTravelledAmount)
         {
             //Win!
         }
@@ -101,12 +107,48 @@ public class DataManager : MonoBehaviour
 
     public void StartTimer()
     {
-        if(isTimerRunning)
+        if (isTimerRunning)
         {
             startTime = Time.time - GetTotalTimeElapsed();
-            isTimerRunning = true; 
+            isTimerRunning = true;
         }
     }
 
+    #endregion
+    #region endings
+    public Dictionary<string, bool> endingsTracker = new Dictionary<string, bool>()
+    {
+        {"Cigarette", false},
+        {"Sanity", false},
+        {"Grocery", false},
+        {"True", false},
+        {"Crash", false}
+
+    };
+    public void SetToggleState(string key, bool state)
+    {
+        if (endingsTracker.ContainsKey(key))
+        {
+            endingsTracker[key] = state;
+            Debug.Log($"Set {key} to {state}");
+        }
+        else
+        {
+            Debug.LogWarning($"Key '{key}' not found in endingsTracker dictionary.");
+        }
+    }
+
+    public bool GetToggleState(string key)
+{
+    if (endingsTracker.ContainsKey(key))
+    {
+        return endingsTracker[key]; // Return the value for the key
+    }
+    else
+    {
+        Debug.LogWarning($"Key '{key}' not found in endingsTracker dictionary.");
+        return false; // Return default value if key is not found
+    }
+}
     #endregion
 }

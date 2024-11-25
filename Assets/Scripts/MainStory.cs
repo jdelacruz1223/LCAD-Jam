@@ -7,6 +7,6 @@ public class MainStory : MonoBehaviour
 {
     private void OnEnable()
     {
-        SceneManager.LoadScene("game", LoadSceneMode.Single);
+        SceneManager.LoadScene("UI to Game", LoadSceneMode.Single);
     }
 }
