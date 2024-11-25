@@ -29,7 +29,7 @@ public class SceneTimer : MonoBehaviour
     {
         Debug.Log("Time up");
 
-        SceneManager.LoadScene("EndGame");
+        SceneManager.LoadScene("CrashEnd");
 
     }
 }

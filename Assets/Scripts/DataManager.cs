@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class DataManager : MonoBehaviour
 {
     public static DataManager Instance;
     public TravelBar travelBar;
+    public bool isDead;
 
 
     // private DataManager() {}
@@ -111,7 +113,6 @@ public class DataManager : MonoBehaviour
     }
 
     #endregion
-
     #region endings
     public Dictionary<string, bool> endingsTracker = new Dictionary<string, bool>()
     {

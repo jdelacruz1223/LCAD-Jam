@@ -5,6 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class EndGameButtonManager : MonoBehaviour
 {
+    Scene scene;
+    private void Start()
+    {
+        scene = SceneManager.GetActiveScene();
+    }
     public void RetryGame()
     {
         SceneManager.LoadScene("3");
@@ -18,6 +23,11 @@ public class EndGameButtonManager : MonoBehaviour
     public void GameEnd()
     {
         Application.Quit();
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene(scene.buildIndex + 1);
     }
 
 }
