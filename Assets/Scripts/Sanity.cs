@@ -32,7 +32,7 @@ public class Sanity : MonoBehaviour
     private Dictionary<string, (bool isActive, float value)> toggleDictionary = new Dictionary<string, (bool, float)>
     {
         {"driveValue", (true, -1)},
-        {"babyValue", (false, 2)}
+        {"babyValue", (false, 3)}
         //insert more cases here
     };
 

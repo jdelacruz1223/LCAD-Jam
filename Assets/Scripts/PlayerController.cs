@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
                     case "groceryTransform":
                         AudioManager.Instance.PlaySound(groceryBagSound);
                         groceryControl.SetTrue();
-                        animator.SetTrigger("isGroceryBagging");
+                        // animator.SetTrigger("isGroceryBagging");
                         // Debug.Log("the bag");
                         break;
                     // insert more cases here
