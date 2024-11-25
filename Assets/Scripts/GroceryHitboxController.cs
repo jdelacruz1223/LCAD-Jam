@@ -17,7 +17,7 @@ public class GroceryHitboxController : MonoBehaviour
     void OnTriggerEnter(Collider other)
     {
         Debug.Log("Grocery Ending");
-        DataManager.Instance.isDead = true;
+        //DataManager.Instance.isDead = true;
         DataManager.Instance.SetToggleState("Grocery", true);
         sanity.Die();
         SceneManager.LoadScene("GroceryEnd");
