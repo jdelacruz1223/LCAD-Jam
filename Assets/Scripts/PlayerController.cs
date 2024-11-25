@@ -7,6 +7,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -89,7 +90,8 @@ public class PlayerController : MonoBehaviour
         else if(other.CompareTag("RoadDeath"))
         {
             Debug.Log("RoadDeath");
-            sanity.Die();
+            SceneManager.LoadScene("CrashEnd");
+            // sanity.Die();
         }
     }
     void MousePointer(Camera currentCam)

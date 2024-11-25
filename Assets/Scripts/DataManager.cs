@@ -38,6 +38,14 @@ public class DataManager : MonoBehaviour
     void Update()
     {
         totalTime = GetTotalTimeElapsed();
+        if(distanceTravelled == finalDestinationTravelledAmount)
+        {
+            SceneManager.LoadScene("TrueEnd");
+        }
+        if(cigaretteCount <= 0)
+        {
+            SceneManager.LoadScene("CigEnd");
+        }
     }
     void Awake()
     {

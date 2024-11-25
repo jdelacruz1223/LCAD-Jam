@@ -19,7 +19,7 @@ public class DebugTimers : MonoBehaviour
     {
         // insert if scene is no longer game
         // if(current scene is not game) CancelInvoke("Timer");
-        distanceText.text = DataManager.Instance.GetDistanceTravelled().ToString();
+        //distanceText.text = DataManager.Instance.GetDistanceTravelled().ToString();
     }
 
     public void Timer()

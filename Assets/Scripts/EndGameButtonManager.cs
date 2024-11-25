@@ -12,7 +12,7 @@ public class EndGameButtonManager : MonoBehaviour
     }
     public void RetryGame()
     {
-        SceneManager.LoadScene("3");
+        SceneManager.LoadScene("game");
     }
 
     public void MainMenuButton()

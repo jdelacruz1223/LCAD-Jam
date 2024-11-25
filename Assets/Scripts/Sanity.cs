@@ -8,6 +8,7 @@ using UnityEditor;
 #endif
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Sanity : MonoBehaviour
 {
@@ -104,7 +105,8 @@ public class Sanity : MonoBehaviour
     public void Die()
     {
         Debug.Log("Insert game over.");
-        Application.Quit();
+        SceneManager.LoadScene("SanityEnd");
+        // Application.Quit();
     }
     #endregion
 }

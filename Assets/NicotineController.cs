@@ -29,6 +29,6 @@ public class NicotineController : MonoBehaviour
 
     void CrashOut()
     {
-        //insert endgame condition here
+        // SceneManager.LoadScene("CigEnding")
     }
 }
